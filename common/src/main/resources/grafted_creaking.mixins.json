@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "net.dialingspoon.grafted_creaking.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "minVersion": "0.8",
+  "client": [
+    "CreakingRendererMixin",
+    "CreakingRenderStateMixin"
+  ],
+  "mixins": [
+    "CreakingHeartBlockEntityMixin",
+    "CreakingHeartBlockMixin",
+    "CreakingMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

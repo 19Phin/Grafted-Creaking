@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "grafted_creaking",
+  "version": "${version}",
+  "name": "Grafted Creaking",
+  "description": "Adds variants to the creaking based on the wood used to spawn it.",
+  "authors": [
+    "DialingSpoon527"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "MIT",
+  "icon": "assets/grafted_creaking/icon.png",
+  "environment": "*",
+  "mixins": [
+    "grafted_creaking.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.9",
+    "minecraft": "~1.21.3",
+    "java": ">=21",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
