@@ -1,7 +1,7 @@
 package net.dialingspoon.grafted_creaking.mixin;
 
-import net.dialingspoon.grafted_creaking.Interfaces.CreakingInterface;
 import net.dialingspoon.grafted_creaking.CreakingVariant;
+import net.dialingspoon.grafted_creaking.Interfaces.CreakingInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -17,7 +17,10 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.monster.Creeper;
@@ -80,8 +83,8 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
 
     @Inject(method = "defineSynchedData", at = @At("TAIL"))
     public void initTracker(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(grafted_creaking$VARIANT, 0);
-        builder.define(grafted_creaking$VARIANT2, 0);
+        builder.define(grafted_creaking$VARIANT, 8);
+        builder.define(grafted_creaking$VARIANT2, 8);
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
@@ -186,9 +189,7 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
             variant = CreakingVariant.MANGROVE;
         } else if(wood.is(BlockTags.CHERRY_LOGS)) {
             variant = CreakingVariant.CHERRY;
-        } else if(wood.is(BlockTags.PALE_OAK_LOGS)) {
-            variant = CreakingVariant.PALE_OAK;
-        } else if(wood.is(BlockTags.CRIMSON_STEMS)) {
+        }else if(wood.is(BlockTags.CRIMSON_STEMS)) {
             variant = CreakingVariant.CRIMSON;
         } else if(wood.is(BlockTags.WARPED_STEMS)) {
             variant = CreakingVariant.WARPED;

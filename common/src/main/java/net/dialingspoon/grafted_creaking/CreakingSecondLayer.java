@@ -2,10 +2,8 @@ package net.dialingspoon.grafted_creaking;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.dialingspoon.grafted_creaking.GraftedCreaking;
 import net.dialingspoon.grafted_creaking.Interfaces.CreakingRenderStateInterface;
 import net.minecraft.client.model.CreakingModel;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;

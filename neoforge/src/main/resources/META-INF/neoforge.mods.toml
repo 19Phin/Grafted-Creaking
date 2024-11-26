@@ -11,7 +11,7 @@ authors = "DialingSpoon527"
 description = '''
 Adds variants to the creaking based on the wood used to spawn it.
 '''
-#logoFile = ""
+logoFile = "icon.png"
 
 [[dependencies.grafted_creaking]]
 modId = "neoforge"

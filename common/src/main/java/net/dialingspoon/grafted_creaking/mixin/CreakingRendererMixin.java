@@ -1,9 +1,9 @@
 package net.dialingspoon.grafted_creaking.mixin;
 
+import net.dialingspoon.grafted_creaking.CreakingSecondLayer;
 import net.dialingspoon.grafted_creaking.GraftedCreaking;
 import net.dialingspoon.grafted_creaking.Interfaces.CreakingInterface;
 import net.dialingspoon.grafted_creaking.Interfaces.CreakingRenderStateInterface;
-import net.dialingspoon.grafted_creaking.CreakingSecondLayer;
 import net.minecraft.client.model.CreakingModel;
 import net.minecraft.client.renderer.entity.CreakingRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
