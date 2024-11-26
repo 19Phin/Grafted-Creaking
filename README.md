@@ -8,7 +8,7 @@ Turns the **Creaking** into a customizable mob with **wood-type based variants**
 - **Player-Created Variants**
   Still only Pale Oak Creakings spawn naturally. To create others, you’ll need to activate a **Creaking Heart** with different kinds of wood. Each wood type gives the Creaking its own special abilities.
 
-  ![The image shows all the new creaking variants lined up in front of their respective hearts](fabric%2Frun%2Fscreenshots%2F2024-11-24_19.39.48.png)
+  ![The image shows all the new creaking variants lined up in front of their respective hearts](https://cdn.modrinth.com/data/cached_images/279a9c4123b236a0f4365f7d8bbc35ec0a9a2b0f.png)
 
   **Abilities**:
     - **Oak**: **No** special ability.
@@ -30,4 +30,4 @@ Turns the **Creaking** into a customizable mob with **wood-type based variants**
 - **Mix-and-Match Abilities**
   Combine different woods to create hybrid Creakings with multiple abilities. Experiment to find the Creaking that suits your needs.
 
-  ![The image shows three examples of mixed creaking variants](fabric/run/screenshots/2024-11-25_19.02.24.png)
+  ![The image shows three examples of mixed creaking variants](https://cdn.modrinth.com/data/cached_images/e489db3493deab4d6a1a06cee5d8f8da8350f893.png)
