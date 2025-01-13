@@ -1,10 +1,10 @@
 modLoader = "javafml"
 loaderVersion = "[4,)"
-#issueTrackerURL = ""
-license = "Insert License Here"
+issueTrackerURL = "https://github.com/19Phin/Grafted-Creaking/issues"
+license = "MIT"
 
 [[mods]]
-modId = "grafted_creaking"
+modId = "grafted_creaking_texture"
 version = "${version}"
 displayName = "Grafted Creaking"
 authors = "DialingSpoon527"
@@ -13,17 +13,17 @@ Adds variants to the creaking based on the wood used to spawn it.
 '''
 logoFile = "icon.png"
 
-[[dependencies.grafted_creaking]]
+[[dependencies.grafted_creaking_texture]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.3,)"
+versionRange = "[21.4,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.grafted_creaking]]
+[[dependencies.grafted_creaking_texture]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.3,)"
+versionRange = "[1.21.4,)"
 ordering = "NONE"
 side = "BOTH"
 

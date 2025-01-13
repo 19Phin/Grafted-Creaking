@@ -7,7 +7,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'grafted_creaking'
+rootProject.name = 'grafted_creaking_texture'
 
 include 'common'
 include 'fabric'

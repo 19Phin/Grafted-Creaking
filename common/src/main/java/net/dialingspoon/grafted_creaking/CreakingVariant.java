@@ -34,8 +34,4 @@ public enum CreakingVariant {
     public int getId() {
         return this.id;
     }
-
-    public static CreakingVariant getById(int id) {
-        return ID_MAP.get(id);
-    }
 }
