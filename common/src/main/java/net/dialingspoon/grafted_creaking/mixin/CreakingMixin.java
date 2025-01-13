@@ -299,7 +299,7 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
 
     @Override
     public boolean canStandOnFluid(FluidState fluidState) {
-        return fluidState.is(FluidTags.WATER);
+        return fluidState.is(FluidTags.WATER) && grafted_creaking$hasVariant(CreakingVariant.MANGROVE);
     }
 
 }

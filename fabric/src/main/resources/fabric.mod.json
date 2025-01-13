@@ -8,8 +8,8 @@
     "DialingSpoon527"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "issues": "https://github.com/19Phin/Grafted-Creaking/issues",
+    "sources": "https://github.com/19Phin/Grafted-Creaking"
   },
   "license": "MIT",
   "icon": "icon.png",
@@ -23,7 +23,7 @@
     "java": ">=21",
     "fabric-api": "*"
   },
-  "suggests": {
-    "another-mod": "*"
+  "conflicts": {
+    "grafted_creaking_texture": "*"
   }
 }

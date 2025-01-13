@@ -1,5 +1,5 @@
 ### **Grafted Creaking**
-Turns the **Creaking** into a customizable mob with **wood-type based variants**. Allowing you to summon and use different variants for pranks, protection and other specific purposes.
+Turns the **Creaking** into a customizable mob with **wood-type based variants**. Allowing you to summon and use different variants for pranks, protection and other specific purposes. You may also download the "texture" file versions for the textures only, no special functions.
 
 ---
 
@@ -11,19 +11,19 @@ Turns the **Creaking** into a customizable mob with **wood-type based variants**
   ![The image shows all the new creaking variants lined up in front of their respective hearts](https://cdn.modrinth.com/data/cached_images/279a9c4123b236a0f4365f7d8bbc35ec0a9a2b0f.png)
 
   **Abilities**:
-    - **Oak**: **No** special ability.
-    - **Spruce**: Higher **damage**.
-    - **Birch**: Causes **blindness**. (for the memes)
-    - **Jungle**: Requires **eye contact** to keep still.
-    - **Acacia**: **Faster** movement.
-    - **Dark Oak**: Despawn **at night**.
-    - **Mangrove**: **Waterwalking**.
-    - **Cherry**: **Passive** towards players.
-    - **Pale Oak**: Despawn **during daytime**.
-    - **Crimson**: **Attacks everything** nearby.
-    - **Warped**: Behavior is **inverted**.
-    - **Bamboo**: **Multiplies** when attacked.
-    - **Mushroom**: Attacks **hostile mobs**.
+  - **Oak**: **No** special ability.
+  - **Spruce**: Higher **damage**.
+  - **Birch**: Causes **blindness**. (for the memes)
+  - **Jungle**: Requires **eye contact** to keep still.
+  - **Acacia**: **Faster** movement.
+  - **Dark Oak**: Despawn **at night**.
+  - **Mangrove**: **Waterwalking**.
+  - **Cherry**: **Passive** towards players.
+  - **Pale Oak**: Despawn **during daytime**.
+  - **Crimson**: **Attacks everything** nearby.
+  - **Warped**: Behavior is **inverted**.
+  - **Bamboo**: **Multiplies** when attacked.
+  - **Mushroom**: Attacks **hostile mobs**.
 
 ---
 
