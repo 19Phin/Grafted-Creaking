@@ -1,5 +1,5 @@
 ### **Grafted Creaking**
-Turns the **Creaking** into a customizable mob with **wood-type based variants**. Allowing you to summon and use different variants for pranks, protection and other specific purposes.
+Turns the **Creaking** into a customizable mob with **wood-type based variants**. Allowing you to summon and use different variants for pranks, protection and other specific purposes. You may also download the "texture" file versions for the textures only, no special functions.
 
 ---
 
