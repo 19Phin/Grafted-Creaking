@@ -3,6 +3,7 @@ package net.dialingspoon.grafted_creaking.mixin;
 import net.dialingspoon.grafted_creaking.CreakingVariant;
 import net.dialingspoon.grafted_creaking.Interfaces.CreakingInterface;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -31,6 +32,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CreakingHeartBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -107,8 +109,9 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
         CreakingVariant variant2 = CreakingVariant.PALE_OAK;
 
         if (((Creaking) (Object) this).isHeartBound()) {
-            variant = grafted_creaking$getVariantFromBlock(this.level().getBlockState(getHomePos().below()));
-            variant2 = grafted_creaking$getVariantFromBlock(this.level().getBlockState(getHomePos().above()));
+            Direction.Axis axis = this.level().getBlockState(getHomePos()).getValue(CreakingHeartBlock.AXIS);
+            variant = grafted_creaking$getVariantFromBlock(this.level().getBlockState(getHomePos().relative(axis.getNegative())));
+            variant2 = grafted_creaking$getVariantFromBlock(this.level().getBlockState(getHomePos().relative(axis.getPositive())));
         }
 
         this.grafted_creaking$setVariant(variant, false);
