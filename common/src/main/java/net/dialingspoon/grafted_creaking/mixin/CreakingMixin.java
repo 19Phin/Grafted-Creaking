@@ -18,10 +18,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntitySpawnReason;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.monster.Creeper;
@@ -170,6 +167,11 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
         }
     }
 
+    @Override
+    public boolean isPreventingPlayerRest(ServerLevel serverLevel, Player player) {
+        return super.isPreventingPlayerRest(serverLevel, player) && !grafted_creaking$hasVariant(CreakingVariant.CHERRY);
+    }
+
     @Unique
     public CreakingVariant grafted_creaking$getVariantFromBlock(BlockState wood) {
         CreakingVariant variant = CreakingVariant.PALE_OAK;
@@ -272,7 +274,7 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
             return true;
         }
         return itemStack.is(ItemTags.GAZE_DISGUISE_EQUIPMENT);
-    };
+    }
 
     @Unique
     public void grafted_creaking$activate(LivingEntity entity) {

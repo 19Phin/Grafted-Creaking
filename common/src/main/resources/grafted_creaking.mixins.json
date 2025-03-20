@@ -8,6 +8,7 @@
     "CreakingRenderStateMixin"
   ],
   "mixins": [
+    "CreakingAiMixin",
     "CreakingHeartBlockEntityMixin",
     "CreakingHeartBlockMixin",
     "CreakingMixin"
