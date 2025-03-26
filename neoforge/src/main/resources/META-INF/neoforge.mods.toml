@@ -1,5 +1,5 @@
 modLoader = "javafml"
-loaderVersion = "[4,)"
+loaderVersion = "[6,)"
 issueTrackerURL = "https://github.com/19Phin/Grafted-Creaking/issues"
 license = "MIT"
 
@@ -16,14 +16,14 @@ logoFile = "icon.png"
 [[dependencies.grafted_creaking]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.3,)"
+versionRange = "[21.4,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.grafted_creaking]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.3,)"
+versionRange = "[1.21.4,)"
 ordering = "NONE"
 side = "BOTH"
 

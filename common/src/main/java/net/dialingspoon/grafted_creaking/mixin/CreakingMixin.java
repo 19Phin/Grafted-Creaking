@@ -96,8 +96,8 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
     public void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
         Creaking creakingEntity = (Creaking) (Object) this;
-        creakingEntity.getEntityData().set(grafted_creaking$VARIANT, compound.getInt("Variant"));
-        creakingEntity.getEntityData().set(grafted_creaking$VARIANT2, compound.getInt("Variant2"));
+        creakingEntity.getEntityData().set(grafted_creaking$VARIANT, compound.getInt("Variant").orElse(8));
+        creakingEntity.getEntityData().set(grafted_creaking$VARIANT2, compound.getInt("Variant2").orElse(8));
     }
 
     @Inject(method = "setTransient", at = @At("TAIL"))
@@ -120,7 +120,7 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
     protected void floatMangrove(CallbackInfo ci) {
         if (this.grafted_creaking$hasVariant(CreakingVariant.MANGROVE) && this.isInWater()) {
             CollisionContext collisionContext = CollisionContext.of(this);
-            if (collisionContext.isAbove(LiquidBlock.STABLE_SHAPE, this.blockPosition(), true)
+            if (collisionContext.isAbove(LiquidBlock.SHAPE_STABLE, this.blockPosition(), true)
                     && !this.level().getFluidState(this.blockPosition().above()).is(FluidTags.WATER)) {
                 this.setOnGround(true);
             } else {

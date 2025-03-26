@@ -29,7 +29,16 @@ public abstract class CreakingHeartBlockEntityMixin implements CreakingHeartBloc
     @Shadow protected abstract Optional<Creaking> getCreakingProtector();
 
     @WrapOperation(method = "serverTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/CreakingHeartBlock;isNaturalNight(Lnet/minecraft/world/level/Level;)Z"))
-    private static boolean shouldSpawn(Level level, Operation<Boolean> original, @Local CreakingHeartBlockEntity creakingHeartBlockEntity) {
+    private static boolean shouldDepawn(Level level, Operation<Boolean> original, @Local CreakingHeartBlockEntity creakingHeartBlockEntity) {
+        return shouldSpawn(level, original, creakingHeartBlockEntity);
+    }
+
+    @WrapOperation(method = "updateCreakingState", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/CreakingHeartBlock;isNaturalNight(Lnet/minecraft/world/level/Level;)Z"))
+    private static boolean heartState(Level level, Operation<Boolean> original, @Local CreakingHeartBlockEntity creakingHeartBlockEntity) {
+        return shouldSpawn(level, original, creakingHeartBlockEntity);
+    }
+
+    private static boolean shouldSpawn(Level level, Operation<Boolean> original, CreakingHeartBlockEntity creakingHeartBlockEntity) {
         Optional<Creaking> creakingOptional = ((CreakingHeartBlockEntityInterface)creakingHeartBlockEntity).getProtector();
         boolean paleOak;
         boolean darkOak;
