@@ -4,7 +4,6 @@ import net.dialingspoon.grafted_creaking.CreakingVariant;
 import net.dialingspoon.grafted_creaking.Interfaces.CreakingInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -18,7 +17,10 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.monster.Creeper;
@@ -34,6 +36,8 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.*;
@@ -87,17 +91,16 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
-    public void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
-        compound.putInt("Variant", grafted_creaking$getVariant(false));
-        compound.putInt("Variant2", grafted_creaking$getVariant(true));
-        super.addAdditionalSaveData(compound);
+    public void addAdditionalSaveData(ValueOutput valueOutput, CallbackInfo ci) {
+        valueOutput.putInt("Variant", grafted_creaking$getVariant(false));
+        valueOutput.putInt("Variant2", grafted_creaking$getVariant(true));
     }
 
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
-    public void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+    public void readAdditionalSaveData(ValueInput valueInput, CallbackInfo ci) {
         Creaking creakingEntity = (Creaking) (Object) this;
-        creakingEntity.getEntityData().set(grafted_creaking$VARIANT, compound.getInt("Variant").orElse(8));
-        creakingEntity.getEntityData().set(grafted_creaking$VARIANT2, compound.getInt("Variant2").orElse(8));
+        creakingEntity.getEntityData().set(grafted_creaking$VARIANT, valueInput.getInt("Variant").orElse(8));
+        creakingEntity.getEntityData().set(grafted_creaking$VARIANT2, valueInput.getInt("Variant2").orElse(8));
     }
 
     @Inject(method = "setTransient", at = @At("TAIL"))
@@ -223,7 +226,7 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
         List<LivingEntity> list = this.brain.getMemory(MemoryModuleType.NEAREST_LIVING_ENTITIES).orElse(List.of())
                 .stream()
                 .filter(this::grafted_creaking$shouldAttack)
-                .collect(Collectors.toList());
+                .toList();
         boolean bl = this.isActive();
         if (list.isEmpty()) {
             if (bl) {
@@ -270,9 +273,6 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
     @Unique
     private static boolean grafted_creaking$wearingDisguiseItem(LivingEntity livingEntity) {
         ItemStack itemStack = livingEntity.getItemBySlot(EquipmentSlot.HEAD);
-        if (itemStack == null) {
-            return true;
-        }
         return itemStack.is(ItemTags.GAZE_DISGUISE_EQUIPMENT);
     }
 
