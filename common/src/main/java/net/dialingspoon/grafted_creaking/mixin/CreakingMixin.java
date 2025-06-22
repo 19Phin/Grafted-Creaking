@@ -90,7 +90,6 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
     public void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
         compound.putInt("Variant", grafted_creaking$getVariant(false));
         compound.putInt("Variant2", grafted_creaking$getVariant(true));
-        super.addAdditionalSaveData(compound);
     }
 
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
