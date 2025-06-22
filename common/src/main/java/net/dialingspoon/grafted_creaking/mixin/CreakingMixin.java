@@ -4,7 +4,6 @@ import net.dialingspoon.grafted_creaking.CreakingVariant;
 import net.dialingspoon.grafted_creaking.Interfaces.CreakingInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -16,6 +15,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CreakingHeartBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -44,16 +45,16 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
-    public void addAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
-        compound.putInt("Variant", grafted_creaking$getVariant(false));
-        compound.putInt("Variant2", grafted_creaking$getVariant(true));
+    public void addAdditionalSaveData(ValueOutput valueOutput, CallbackInfo ci) {
+        valueOutput.putInt("Variant", grafted_creaking$getVariant(false));
+        valueOutput.putInt("Variant2", grafted_creaking$getVariant(true));
     }
 
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
-    public void readAdditionalSaveData(CompoundTag compound, CallbackInfo ci) {
+    public void readAdditionalSaveData(ValueInput valueInput, CallbackInfo ci) {
         Creaking creakingEntity = (Creaking) (Object) this;
-        creakingEntity.getEntityData().set(grafted_creaking$VARIANT, compound.getInt("Variant").orElse(8));
-        creakingEntity.getEntityData().set(grafted_creaking$VARIANT2, compound.getInt("Variant2").orElse(8));
+        creakingEntity.getEntityData().set(grafted_creaking$VARIANT, valueInput.getInt("Variant").orElse(8));
+        creakingEntity.getEntityData().set(grafted_creaking$VARIANT2, valueInput.getInt("Variant2").orElse(8));
     }
 
     @Inject(method = "setTransient", at = @At("TAIL"))
