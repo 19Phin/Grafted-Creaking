@@ -1,12 +1,9 @@
 package net.dialingspoon.grafted_creaking;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.dialingspoon.grafted_creaking.Interfaces.CreakingRenderStateInterface;
 import net.minecraft.client.model.CreakingModel;
 import net.minecraft.client.model.geom.EntityModelSet;
-import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
@@ -28,14 +25,13 @@ public class CreakingSecondLayer extends RenderLayer<CreakingRenderState, Creaki
     private static final ResourceLocation WARPED = ResourceLocation.tryBuild(GraftedCreaking.MOD_ID, "textures/entity/creaking/warped/warped_layer");
     private static final ResourceLocation BAMBOO = ResourceLocation.tryBuild(GraftedCreaking.MOD_ID, "textures/entity/creaking/bamboo_layer.png");
     private static final ResourceLocation MUSHROOM = ResourceLocation.tryBuild(GraftedCreaking.MOD_ID, "textures/entity/creaking/mushroom_layer.png");
-    private final CreakingModel model;
 
     public CreakingSecondLayer(RenderLayerParent<CreakingRenderState, CreakingModel> renderLayerParent, EntityModelSet entityModelSet) {
         super(renderLayerParent);
-        this.model = new CreakingModel(entityModelSet.bakeLayer(ModelLayers.CREAKING));
     }
 
-    public void render(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, CreakingRenderState creakingRenderState, float f, float g) {
+    @Override
+    public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, CreakingRenderState creakingRenderState, float f, float g) {
         CreakingRenderStateInterface stateInterface = (CreakingRenderStateInterface)creakingRenderState;
         int type = stateInterface.grafted_creaking$getVariant(true);
 
@@ -56,10 +52,7 @@ public class CreakingSecondLayer extends RenderLayer<CreakingRenderState, Creaki
         };
 
         if (!creakingRenderState.isInvisible) {
-            model.setupAnim(creakingRenderState);
-            VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.entityCutoutNoCull(resourceLocation));
-            model.renderToBuffer(poseStack, vertexConsumer, i, LivingEntityRenderer.getOverlayCoords(creakingRenderState, 0.0F));
+            submitNodeCollector.order(1).submitModel(this.getParentModel(), creakingRenderState, poseStack, RenderType.entityCutoutNoCull(resourceLocation), i,  LivingEntityRenderer.getOverlayCoords(creakingRenderState, 0.0F), -1, null, creakingRenderState.outlineColor, null);
         }
     }
-
 }

@@ -16,14 +16,14 @@ logoFile = "icon.png"
 [[dependencies.grafted_creaking_texture]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.5, 21.9)"
+versionRange = "[21.8,)"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.grafted_creaking_texture]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.5, 1.21.9)"
+versionRange = "[1.21.8,)"
 ordering = "NONE"
 side = "BOTH"
 
