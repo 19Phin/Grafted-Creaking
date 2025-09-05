@@ -48,7 +48,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Mixin(Creaking.class)
 public abstract class CreakingMixin extends Monster implements CreakingInterface {
