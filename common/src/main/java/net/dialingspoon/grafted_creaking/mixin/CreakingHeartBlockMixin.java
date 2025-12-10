@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(CreakingHeartBlock.class)
 public class CreakingHeartBlockMixin {
 
-    @Redirect(method = "hasRequiredLogs", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/tags/TagKey;)Z"))
+    @Redirect(method = {"hasRequiredLogs", "isSurroundedByLogs"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/tags/TagKey;)Z"))
     private static boolean isWood(BlockState instance, TagKey tagKey) {
         return instance.is(BlockTags.LOGS) || instance.is(Blocks.MUSHROOM_STEM) || instance.is(BlockTags.BAMBOO_BLOCKS);
     }
@@ -28,10 +28,5 @@ public class CreakingHeartBlockMixin {
             return axis;
         }
         return original.call(instance, property);
-    }
-
-    @Redirect(method = "isSurroundedByLogs", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/tags/TagKey;)Z"))
-    private static boolean isWoodAround(BlockState instance, TagKey tagKey) {
-        return instance.is(BlockTags.LOGS) || instance.is(Blocks.MUSHROOM_STEM) || instance.is(BlockTags.BAMBOO_BLOCKS);
     }
 }
