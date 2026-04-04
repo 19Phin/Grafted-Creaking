@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "net.dialingspoon.grafted_creaking.fabric.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "minVersion": "0.8",
+  "mixins": [
+    "CreakingMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

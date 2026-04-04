@@ -14,12 +14,18 @@
   "license": "MIT",
   "icon": "icon.png",
   "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.dialingspoon.grafted_creaking.fabric.GraftedCreakingFabric"
+    ]
+  },
   "mixins": [
-    "grafted_creaking.mixins.json"
+    "grafted_creaking.mixins.json",
+    "grafted_creaking.fabric.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.9",
-    "minecraft": ">1.21.10",
+    "minecraft": ">1.21.11",
     "java": ">=21",
     "fabric-api": "*"
   },

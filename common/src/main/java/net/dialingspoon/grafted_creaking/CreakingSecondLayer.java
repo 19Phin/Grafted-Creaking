@@ -53,7 +53,7 @@ public class CreakingSecondLayer extends RenderLayer<CreakingRenderState, Creaki
         };
 
         if (!creakingRenderState.isInvisible) {
-            submitNodeCollector.order(1).submitModel(this.getParentModel(), creakingRenderState, poseStack, RenderTypes.entityCutoutNoCull(resourceLocation), i,  LivingEntityRenderer.getOverlayCoords(creakingRenderState, 0.0F), -1, null, creakingRenderState.outlineColor, null);
+            submitNodeCollector.order(1).submitModel(this.getParentModel(), creakingRenderState, poseStack, RenderTypes.entityCutout(resourceLocation), i,  LivingEntityRenderer.getOverlayCoords(creakingRenderState, 0.0F), -1, null, creakingRenderState.outlineColor, null);
         }
     }
 }

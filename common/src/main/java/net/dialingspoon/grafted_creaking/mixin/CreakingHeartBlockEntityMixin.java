@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(CreakingHeartBlockEntity.class)
 public abstract class CreakingHeartBlockEntityMixin {
-    @Redirect(method = {"method_65168", "method_65169"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/tags/TagKey;)Z"))
+    @Redirect(method = {"lambda$spreadResin$0", "lambda$spreadResin$1"}, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/tags/TagKey;)Z"))
     private static boolean canSpreadResin(BlockState instance, TagKey tagKey) {
         return instance.is(BlockTags.LOGS) || instance.is(Blocks.MUSHROOM_STEM) || instance.is(BlockTags.BAMBOO_BLOCKS);
     }

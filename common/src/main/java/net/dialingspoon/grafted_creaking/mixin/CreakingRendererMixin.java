@@ -2,8 +2,8 @@ package net.dialingspoon.grafted_creaking.mixin;
 
 import net.dialingspoon.grafted_creaking.CreakingSecondLayer;
 import net.dialingspoon.grafted_creaking.GraftedCreaking;
-import net.dialingspoon.grafted_creaking.Interfaces.CreakingInterface;
 import net.dialingspoon.grafted_creaking.Interfaces.CreakingRenderStateInterface;
+import net.dialingspoon.grafted_creaking.PlatformSpecific;
 import net.minecraft.client.model.monster.creaking.CreakingModel;
 import net.minecraft.client.renderer.entity.CreakingRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -77,9 +77,8 @@ public class CreakingRendererMixin<T extends Creaking> extends MobRenderer<T, Cr
     @Inject(method = "extractRenderState(Lnet/minecraft/world/entity/monster/creaking/Creaking;Lnet/minecraft/client/renderer/entity/state/CreakingRenderState;F)V", at = @At("TAIL"))
     public void extractVariant(T creakingEntity, CreakingRenderState creakingRenderState, float f, CallbackInfo ci) {
         CreakingRenderStateInterface renderState = (CreakingRenderStateInterface) creakingRenderState;
-        CreakingInterface creaking = (CreakingInterface) creakingEntity;
-        renderState.grafted_creaking$setVariant(creaking.grafted_creaking$getVariant(false), false);
-        renderState.grafted_creaking$setVariant(creaking.grafted_creaking$getVariant(true), true);
+        renderState.grafted_creaking$setVariant(PlatformSpecific.getVariant(creakingEntity, false), false);
+        renderState.grafted_creaking$setVariant(PlatformSpecific.getVariant(creakingEntity, true), true);
         renderState.grafted_creaking$setAge(creakingEntity.tickCount);
     }
 

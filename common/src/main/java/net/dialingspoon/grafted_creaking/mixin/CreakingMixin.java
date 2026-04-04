@@ -1,12 +1,9 @@
 package net.dialingspoon.grafted_creaking.mixin;
 
 import net.dialingspoon.grafted_creaking.CreakingVariant;
-import net.dialingspoon.grafted_creaking.Interfaces.CreakingInterface;
+import net.dialingspoon.grafted_creaking.PlatformSpecific;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
@@ -25,12 +22,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Creaking.class)
-public abstract class CreakingMixin extends Monster implements CreakingInterface {
-    @Unique
-    private static final EntityDataAccessor<Integer> grafted_creaking$VARIANT = SynchedEntityData.defineId(Creaking.class, EntityDataSerializers.INT);
-    @Unique
-    private static final EntityDataAccessor<Integer> grafted_creaking$VARIANT2 = SynchedEntityData.defineId(Creaking.class, EntityDataSerializers.INT);
-
+public abstract class CreakingMixin extends Monster {
     @Shadow
     public abstract BlockPos getHomePos();
 
@@ -38,23 +30,18 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
         super(entityType, level);
     }
 
-    @Inject(method = "defineSynchedData", at = @At("TAIL"))
-    public void initTracker(SynchedEntityData.Builder builder, CallbackInfo ci) {
-        builder.define(grafted_creaking$VARIANT, 8);
-        builder.define(grafted_creaking$VARIANT2, 8);
-    }
-
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
     public void addAdditionalSaveData(ValueOutput valueOutput, CallbackInfo ci) {
-        valueOutput.putInt("Variant", grafted_creaking$getVariant(false));
-        valueOutput.putInt("Variant2", grafted_creaking$getVariant(true));
+        Creaking creakingEntity = (Creaking) (Object) this;
+        valueOutput.putInt("Variant", PlatformSpecific.getVariant(creakingEntity, false));
+        valueOutput.putInt("Variant2", PlatformSpecific.getVariant(creakingEntity, true));
     }
 
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
     public void readAdditionalSaveData(ValueInput valueInput, CallbackInfo ci) {
         Creaking creakingEntity = (Creaking) (Object) this;
-        creakingEntity.getEntityData().set(grafted_creaking$VARIANT, valueInput.getInt("Variant").orElse(8));
-        creakingEntity.getEntityData().set(grafted_creaking$VARIANT2, valueInput.getInt("Variant2").orElse(8));
+        PlatformSpecific.setVariant(creakingEntity, CreakingVariant.getById(valueInput.getInt("Variant").orElse(8)), false);
+        PlatformSpecific.setVariant(creakingEntity, CreakingVariant.getById(valueInput.getInt("Variant2").orElse(8)), true);
     }
 
     @Inject(method = "setTransient", at = @At("TAIL"))
@@ -68,31 +55,17 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
             variant2 = grafted_creaking$getVariantFromBlock(this.level().getBlockState(getHomePos().relative(axis.getPositive())));
         }
 
-        this.grafted_creaking$setVariant(variant, false);
-        this.grafted_creaking$setVariant(variant2, true);
+        Creaking creakingEntity = (Creaking) (Object) this;
+        PlatformSpecific.setVariant(creakingEntity, variant, false);
+        PlatformSpecific.setVariant(creakingEntity, variant2, true);
 
     }
 
     @Inject(method = "<init>", at = @At("TAIL"))
     protected void defaultPale(CallbackInfo ci) {
-        this.grafted_creaking$setVariant(CreakingVariant.PALE_OAK, false);
-        this.grafted_creaking$setVariant(CreakingVariant.PALE_OAK, true);
-    }
-
-    @Override
-    public int grafted_creaking$getVariant(boolean second) {
-        SynchedEntityData data = this.getEntityData();
-        return second ? data.get(grafted_creaking$VARIANT2) : data.get(grafted_creaking$VARIANT);
-    }
-
-    @Override
-    public void grafted_creaking$setVariant(CreakingVariant variant, boolean second) {
-        SynchedEntityData data = this.getEntityData();
-        if (second) {
-            data.set(grafted_creaking$VARIANT2, variant.getId() & 255);
-        } else {
-            data.set(grafted_creaking$VARIANT, variant.getId() & 255);
-        }
+        Creaking creakingEntity = (Creaking) (Object) this;
+        PlatformSpecific.setVariant(creakingEntity, CreakingVariant.PALE_OAK, false);
+        PlatformSpecific.setVariant(creakingEntity, CreakingVariant.PALE_OAK, true);
     }
 
     @Unique
