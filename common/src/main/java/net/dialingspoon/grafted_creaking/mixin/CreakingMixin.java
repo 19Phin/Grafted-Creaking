@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.BlockItemTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
@@ -16,10 +17,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EntitySpawnReason;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.monster.Creeper;
@@ -135,7 +133,7 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
         if (this.grafted_creaking$hasVariant(CreakingVariant.BAMBOO)) {
             BlockPos blockPos = this.getHomePos();
             Optional<Creaking> optional = SpawnUtil.trySpawnMob(
-                    EntityType.CREAKING, EntitySpawnReason.REINFORCEMENT, serverLevel, blockPos, 5, 16, 8, SpawnUtil.Strategy.ON_TOP_OF_COLLIDER_NO_LEAVES, true
+                    EntityTypes.CREAKING, EntitySpawnReason.REINFORCEMENT, serverLevel, blockPos, 5, 16, 8, SpawnUtil.Strategy.ON_TOP_OF_COLLIDER_NO_LEAVES, true
             );
             Creaking creaking = optional.get();
             serverLevel.gameEvent(creaking, GameEvent.ENTITY_PLACE, creaking.position());
@@ -155,29 +153,29 @@ public abstract class CreakingMixin extends Monster implements CreakingInterface
     public CreakingVariant grafted_creaking$getVariantFromBlock(BlockState wood) {
         CreakingVariant variant = CreakingVariant.PALE_OAK;
 
-        if(wood.is(BlockTags.OAK_LOGS)) {
+        if(wood.is(BlockItemTags.OAK_LOGS.block())) {
             variant = CreakingVariant.OAK;
-        } else if(wood.is(BlockTags.SPRUCE_LOGS)) {
+        } else if(wood.is(BlockItemTags.SPRUCE_LOGS.block())) {
             variant = CreakingVariant.SPRUCE;
             this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(6.0F);
-        } else if(wood.is(BlockTags.BIRCH_LOGS)) {
+        } else if(wood.is(BlockItemTags.BIRCH_LOGS.block())) {
             variant = CreakingVariant.BIRCH;
-        } else if(wood.is(BlockTags.JUNGLE_LOGS)) {
+        } else if(wood.is(BlockItemTags.JUNGLE_LOGS.block())) {
             variant = CreakingVariant.JUNGLE;
-        } else if(wood.is(BlockTags.ACACIA_LOGS)) {
+        } else if(wood.is(BlockItemTags.ACACIA_LOGS.block())) {
             variant = CreakingVariant.ACACIA;
             this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(.55F);
-        } else if(wood.is(BlockTags.DARK_OAK_LOGS)) {
+        } else if(wood.is(BlockItemTags.DARK_OAK_LOGS.block())) {
             variant = CreakingVariant.DARK_OAK;
-        } else if(wood.is(BlockTags.MANGROVE_LOGS)) {
+        } else if(wood.is(BlockItemTags.MANGROVE_LOGS.block())) {
             variant = CreakingVariant.MANGROVE;
-        } else if(wood.is(BlockTags.CHERRY_LOGS)) {
+        } else if(wood.is(BlockItemTags.CHERRY_LOGS.block())) {
             variant = CreakingVariant.CHERRY;
-        }else if(wood.is(BlockTags.CRIMSON_STEMS)) {
+        }else if(wood.is(BlockItemTags.CRIMSON_STEMS.block())) {
             variant = CreakingVariant.CRIMSON;
-        } else if(wood.is(BlockTags.WARPED_STEMS)) {
+        } else if(wood.is(BlockItemTags.WARPED_STEMS.block())) {
             variant = CreakingVariant.WARPED;
-        } else if(wood.is(BlockTags.BAMBOO_BLOCKS)) {
+        } else if(wood.is(BlockItemTags.BAMBOO_BLOCKS.block())) {
             variant = CreakingVariant.BAMBOO;
         } else if(wood.is(Blocks.MUSHROOM_STEM)) {
             variant = CreakingVariant.MUSHROOM;

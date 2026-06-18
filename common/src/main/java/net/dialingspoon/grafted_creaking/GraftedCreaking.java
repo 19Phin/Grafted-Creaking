@@ -4,6 +4,7 @@ import net.dialingspoon.grafted_creaking.Interfaces.CreakingHeartBlockEntityInte
 import net.dialingspoon.grafted_creaking.Interfaces.CreakingInterface;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockItemTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.monster.creaking.Creaking;
 import net.minecraft.world.level.Level;
@@ -28,7 +29,7 @@ public final class GraftedCreaking {
             Direction.Axis axis = creakingHeartBlockEntity.getBlockState().getValue(CreakingHeartBlock.AXIS);
             Level level = creakingHeartBlockEntity.getLevel();
             paleOak = (level.getBlockState(pos.relative(axis.getPositive())).is(BlockTags.PALE_OAK_LOGS) || level.getBlockState(pos.relative(axis.getNegative())).is(BlockTags.PALE_OAK_LOGS));
-            darkOak = (level.getBlockState(pos.relative(axis.getPositive())).is(BlockTags.DARK_OAK_LOGS) || level.getBlockState(pos.relative(axis.getNegative())).is(BlockTags.DARK_OAK_LOGS));
+            darkOak = (level.getBlockState(pos.relative(axis.getPositive())).is(BlockItemTags.DARK_OAK_LOGS.block()) || level.getBlockState(pos.relative(axis.getNegative())).is(BlockItemTags.DARK_OAK_LOGS.block()));
         }
 
         if (paleOak && darkOak) {
