@@ -4,6 +4,7 @@ import net.dialingspoon.grafted_creaking.CreakingVariant;
 import net.dialingspoon.grafted_creaking.PlatformSpecific;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockItemTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
@@ -72,27 +73,27 @@ public abstract class CreakingMixin extends Monster {
     public CreakingVariant grafted_creaking$getVariantFromBlock(BlockState wood) {
         CreakingVariant variant = CreakingVariant.PALE_OAK;
 
-        if(wood.is(BlockTags.OAK_LOGS)) {
+        if(wood.is(BlockItemTags.OAK_LOGS.block())) {
             variant = CreakingVariant.OAK;
-        } else if(wood.is(BlockTags.SPRUCE_LOGS)) {
+        } else if(wood.is(BlockItemTags.SPRUCE_LOGS.block())) {
             variant = CreakingVariant.SPRUCE;
-        } else if(wood.is(BlockTags.BIRCH_LOGS)) {
+        } else if(wood.is(BlockItemTags.BIRCH_LOGS.block())) {
             variant = CreakingVariant.BIRCH;
-        } else if(wood.is(BlockTags.JUNGLE_LOGS)) {
+        } else if(wood.is(BlockItemTags.JUNGLE_LOGS.block())) {
             variant = CreakingVariant.JUNGLE;
-        } else if(wood.is(BlockTags.ACACIA_LOGS)) {
+        } else if(wood.is(BlockItemTags.ACACIA_LOGS.block())) {
             variant = CreakingVariant.ACACIA;
-        } else if(wood.is(BlockTags.DARK_OAK_LOGS)) {
+        } else if(wood.is(BlockItemTags.DARK_OAK_LOGS.block())) {
             variant = CreakingVariant.DARK_OAK;
-        } else if(wood.is(BlockTags.MANGROVE_LOGS)) {
+        } else if(wood.is(BlockItemTags.MANGROVE_LOGS.block())) {
             variant = CreakingVariant.MANGROVE;
-        } else if(wood.is(BlockTags.CHERRY_LOGS)) {
+        } else if(wood.is(BlockItemTags.CHERRY_LOGS.block())) {
             variant = CreakingVariant.CHERRY;
-        }else if(wood.is(BlockTags.CRIMSON_STEMS)) {
+        }else if(wood.is(BlockItemTags.CRIMSON_STEMS.block())) {
             variant = CreakingVariant.CRIMSON;
-        } else if(wood.is(BlockTags.WARPED_STEMS)) {
+        } else if(wood.is(BlockItemTags.WARPED_STEMS.block())) {
             variant = CreakingVariant.WARPED;
-        } else if(wood.is(BlockTags.BAMBOO_BLOCKS)) {
+        } else if(wood.is(BlockItemTags.BAMBOO_BLOCKS.block())) {
             variant = CreakingVariant.BAMBOO;
         } else if(wood.is(Blocks.MUSHROOM_STEM)) {
             variant = CreakingVariant.MUSHROOM;
